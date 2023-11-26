@@ -5,6 +5,7 @@ import htmlIcon from "../../assets/htnlIcon";
 import cssIcon from "../../assets/cssIcon.js";
 import jsIcon from "../../assets/jsIcon.js";
 import github from "../../assets/github.js";
+import { baseStyle } from "../../styles/baseStyle.js";
 
 const tagData = [
   { name: "HTML", icon: htmlIcon, iconName: "HTML" },
@@ -13,7 +14,7 @@ const tagData = [
   { name: "github", icon: github, iconName: "github" },
 ];
 
-const TagComponent = ({ tag, onPress }) => {
+const TagComponent = ({ tag, onPress, isSelected }) => {
   const tagInfo = find(propEq("name", tag))(tagData);
   const tagIcon = tagInfo ? tagInfo.icon : null;
   const icon = getIcon(tag);
@@ -40,10 +41,12 @@ const TagComponent = ({ tag, onPress }) => {
           flexDirection: "row",
           borderWidth: 1,
           borderRadius: 10,
-          borderColor: "black",
+          borderColor: isSelected ? baseStyle.secondary.backgroundColor : baseStyle.onPrimary.backgroundColor,
+          backgroundColor: isSelected ? baseStyle.onSecondary.backgroundColor : "white",
           gap: 10,
           alignItems: "center",
-          padding: 5,
+          paddingRight: 4,
+          paddingLeft: 4,
         }}
       >
         <Text>{tag}</Text>
@@ -58,6 +61,9 @@ const TagComponent = ({ tag, onPress }) => {
 };
 
 const TagsComponent = ({ selectedTags, onTagPress }) => {
+  const handleTagPress = (tag) => {
+    onTagPress(tag);
+  };
   return (
     <View
       style={{
@@ -71,7 +77,7 @@ const TagsComponent = ({ selectedTags, onTagPress }) => {
         <TagComponent
           key={tag.name}
           tag={tag.name}
-          onPress={onTagPress}
+          onPress={handleTagPress}
           iconName={tag.iconName || tag.name}
           isSelected={selectedTags.includes(tag.name)}
         />

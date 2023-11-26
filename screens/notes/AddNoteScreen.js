@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, TextInput, Button } from "react-native";
+import { View, TextInput, Button, TouchableOpacity, Text } from "react-native";
 import { db } from "../../data/database";
 import TagsComponent from "../../components/notes/tags";
-import githubIcon from "../../assets/github.js";
+import { baseStyle } from "../../styles/baseStyle.js";
 
 export default function AddNoteScreen({ navigation }) {
   const [title, setTitle] = useState("");
@@ -50,7 +50,6 @@ const handleTagPress = (tag) => {
 
   return (
     <View style={{ flex: 1, padding: 16 }}>
-    {githubIcon({ width: 35, height: 35})}
       <TextInput
         placeholder="Заголовок"
         value={title}
@@ -70,7 +69,12 @@ const handleTagPress = (tag) => {
         }}
       />
       <TagsComponent selectedTags={selectedTags} onTagPress={handleTagPress} />
-      <Button title="Создать" onPress={handleCreateNote} />
+      <TouchableOpacity
+        style={{ marginTop: 20, backgroundColor: baseStyle.primary.backgroundColor, padding: 8, borderRadius: 5, padding: 14, alignItems: "center" }}
+        onPress={handleCreateNote}
+      >
+        <Text style={{ color: "white" }}>Создать</Text>
+      </TouchableOpacity>
     </View>
   );
 }

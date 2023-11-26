@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Notes" component={NotesScreen} />
@@ -18,4 +18,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
 
