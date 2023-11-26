@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { View, Text, Button, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { getNotes } from "../../data/database";
+import { TouchableOpacity } from "react-native";
+import { baseStyle } from "../../styles/baseStyle";
 
 export default function NotesScreen() {
   const navigation = useNavigation();
@@ -20,19 +22,30 @@ export default function NotesScreen() {
     }
   };
 
-
   const handleAddNote = () => {
     navigation.navigate("AddNote");
   };
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button title="Добавить заметку" onPress={handleAddNote} />
+      <TouchableOpacity
+        style={{
+          marginTop: 20,
+          backgroundColor: baseStyle.primary.backgroundColor,
+          padding: 8,
+          borderRadius: 5,
+          padding: 14,
+          alignItems: "center",
+        }}
+        onPress={handleAddNote}
+      >
+        <Text style={{ color: "white" }}>Добавить заметку</Text>
+      </TouchableOpacity>
       <FlatList
         data={notes}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View>
+          <View style={{borderColor: baseStyle.primary.backgroundColor, borderWidth: 1, borderRadius: 4, gap: 10, marginTop: 10, padding: 20}}>
             <Text>{item.title}</Text>
             <Text>{item.content}</Text>
           </View>
@@ -41,7 +54,6 @@ export default function NotesScreen() {
     </View>
   );
 }
-
 
 //       <Text>Возможные категории заметок</Text>
 //       <Text>Проектные заметки</Text>
