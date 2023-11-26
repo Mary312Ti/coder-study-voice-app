@@ -28,7 +28,7 @@ const attachTagsToNote = (noteId) => {
 db.transaction(tx => {
   selectedTags.forEach(tag => {
     tx.executeSql(
-      'INSERT INTO note_tags (note_id, tag_name) VALUE (?, ?);',
+      'INSERT INTO note_tags (note_id, tag_name) VALUES (?, ?);',
       [noteId, tag],
       (_, {insertId}) => console.log(`Tag ${tag} attached to note ${noteId}`),
       (_, error) => console.error('Error attaching tag to note:', error)

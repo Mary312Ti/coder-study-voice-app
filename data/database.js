@@ -35,7 +35,7 @@ export const createNoteTagsTable = () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "CREATE TABLE IF NOT EXIST note_tags (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, tag_name TEXT);",
+        "CREATE TABLE IF NOT EXISTS note_tags (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, tag_name TEXT);",
         [],
         () => resolve(),
         (_, error) => reject(error)
