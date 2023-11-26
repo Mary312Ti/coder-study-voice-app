@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Button, TouchableOpacity, Text } from "react-native";
+import { View, Button, TouchableOpacity, Text} from "react-native";
 import { baseStyle } from "../../styles/baseStyle";
+import Micropfone from '../../assets/Microphone.svg'
 
 export default function HomeScreen({ navigation }) {
   const goToNotes = () => {
@@ -9,6 +10,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <Micropfone width={120} height={120}/>
       <TouchableOpacity
         style={{
           marginTop: 20,
